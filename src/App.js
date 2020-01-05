@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NoteList from './components/NoteList';
+import Note from './components/Note';
 import AddForm from './components/AddForm';
 import './App.css';
 
@@ -9,8 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       notes: [
-        {id: 1, content: 'Some text 1'},
-        {id: 2, content: 'Some text 2'},       
+        {id: 1, content: "Some data"}
       ]
     }
   }
@@ -19,6 +18,11 @@ class App extends Component {
     const aList = this.state.notes.filter(aNote => {
       return aNote.id !== id
     });
+    this.setState(
+      alert(
+          "Are you sure want to delete the note?"
+          )
+      );
     this.setState({
       notes: aList
     })
@@ -26,8 +30,8 @@ class App extends Component {
 
   addNote = (item) => {
     if(item.content === '') {return}
-    item.id = (Math.random() + 2);
-    const newArray = [...this.state.notes, item]
+    item.id = Math.round( Math.random()+1);
+    const newArray = [...this.state.notes, item]    
     this.setState({
       notes: newArray
     })
@@ -46,13 +50,26 @@ class App extends Component {
     })       
   }
 
+  clearAll = (e) => {
+    this.setState(
+      alert(
+          "Are you sure want to clear the list?"
+          )
+      );  
+    this.setState({
+      notes: []      
+    })     
+
+  }
+
   render(){
     console.log(this.state.notes);
     return (
       <div className="App">
         <h1 className="header center">React Todo Aplication</h1>
-        <NoteList list={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}/>
+        <Note list={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}/>
         <AddForm addNote={this.addNote}/>
+        <button className="clearAllBtn" onClick={this.clearAll}>Clear List</button>
       </div>
     );
   }

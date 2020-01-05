@@ -1,23 +1,21 @@
 import React from 'react';
 
 
-const NoteList = ({list, deleteNote, editNote}) => {    
+const Note = ({list, deleteNote, editNote}) => {    
     const tlistOfNotes = list.length ? (
         list.map(todo => {
             return (
                 <div className="note" key={todo.id}>
                     <div>
-                        <input type="text" value={todo.content} id={todo.id}
+                        <input className="noteField" type="text" value={todo.content} id={todo.id}
                             onChange={(e) => {
                                 editNote(e.target.value, todo.id)
                             }}
                         ></input>
-                    </div>
-                    
-                    <div className="">                       
-                        <button className="deleteBtn" onClick={()=>{deleteNote(todo.id)}}>X</button>                        
-                    </div>
-                    
+                    </div>                   
+                                          
+                    <button className="deleteBtn" onClick={()=>{deleteNote(todo.id)}}>X</button>                        
+                                        
                 </div>
              )
         })
@@ -31,4 +29,4 @@ const NoteList = ({list, deleteNote, editNote}) => {
   );
 }
 
-export default NoteList;
+export default Note;

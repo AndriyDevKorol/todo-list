@@ -12,6 +12,8 @@ class AddForm extends Component {
     }
 
     handleSubmit = (e) => {
+        console.log(e);
+        // if(item.content === '') {return}
         e.preventDefault();
         this.props.addNote(this.state);
         this.setState({content: ''});
