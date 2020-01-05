@@ -17,7 +17,7 @@ class AddForm extends Component {
         this.setState({content: ''});
         this.setState(
             alert(
-                "Do you want to add the note to the list?"
+                " Do you want to add the note to the list?"
                 )
             );        
     }
